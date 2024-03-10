@@ -1,0 +1,19 @@
+<% layout("./layouts/boilerplate") -%>
+
+<div class="container">
+  <a href="/profile">
+
+    <img src="<%= user.profile_url%>" alt="post owner pic" class="mx-auto d-block rounded-circle my-3" style="width: 6rem;">
+  </a>
+<h2 class="text-center"><%= post.title%></h2>
+
+<hr>
+<div class="card mx-auto mt-5 ">
+  <div class="card-body">
+    <div class="card-text text-center my-5 bg-body-tertiary rounded-1"><%= post.content%></div>
+    <div class="card-text ">Last Modified : <%= post.created_date%></div>
+    <div class="card-text">At :<%= post.created_at%></div>
+    <div class="card-footer">Post owner: <%= post.creator_id%></div>
+  </div>
+</div>
+</div>

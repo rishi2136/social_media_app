@@ -1,0 +1,30 @@
+<% layout("./layouts/boilerplate") -%>
+
+  <div>
+    <div class="container mt-5">
+      <h2 class="text-center">Add User Details</h2>
+      <form method="post" action="/profile/<%= user.id%>?_method=PUT">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" class="form-control" id="username" name="user[username]" value="<%= user.username %>">
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email Id.</label>
+          <input type="text" class="form-control" id="email" name="user[email]"
+            value="<%= user.email %>">
+        </div>
+        <div class="mb-3">
+          <label for="profile_url" class="form-label">Profile Image</label>
+          <input type="text" class="form-control" id="profile_url" name="user[profile_url]"
+            value="<%= user.profile_url %>">
+        </div>
+        <div class="mb-3">
+          <label for="bio" class="form-label">Bio</label>
+          <textarea class="form-control" id="bio" name="user[bio]" rows="5"><%=user.bio %></textarea>
+        </div>
+        <button type="submit" class="btn btn-dark ">Edit Now</button>
+      </form>
+    </div>
+
+
+  </div>

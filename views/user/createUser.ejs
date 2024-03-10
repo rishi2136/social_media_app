@@ -1,0 +1,18 @@
+<% layout("./layouts/boilerplate") -%>
+
+<div>
+  <div class="container mt-5">
+    <h2 class="text-center">Add Post Details</h2>
+    <form method="post" action="/profile/new">
+      <div class="mb-3">
+        <label for="username" class="form-label">Enter a Username: </label>
+        <input type="text" class="form-control" id="username" name="username" required>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Enter your email: </label>
+        <input class="form-control" id="email" name="email" rows="5" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+  </div>
+</div>
