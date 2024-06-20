@@ -1,0 +1,125 @@
+body {
+  background-image: url("https://images.unsplash.com/photo-1526554850534-7c78330d5f90?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-size: cover;
+  /* only allow content to move */
+  background-attachment: fixed;
+  font-family: "Lora", serif;
+  letter-spacing: 1px;
+}
+
+/* from home.ejs */
+.red {
+  color: red;
+}
+
+.post-card {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 6px 6px rgba(0, 0, 0, 0.1);
+  background-color: white;
+
+  transition: all 0.3s ease-in-out;
+}
+
+.post-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.15);
+  outline: 1px solid white;
+
+  scale: 1.05;
+  /* background-color: #DAA19F */
+  background-color: #dabe9f;
+}
+
+@media (max-width: 450px) {
+  .post-card {
+    width: 100%;
+  }
+}
+
+.time-status {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.search-btn {
+  position: relative;
+  top: 2px;
+  font-size: 22px;
+}
+
+.profile-link {
+  text-decoration: none;
+  color: black;
+  padding: 8px 12px;
+  border: 2px solid rgb(90, 225, 223);
+  border-radius: 20px;
+  margin: 4px;
+  position: relative;
+  left: -20px;
+  display: block;
+  text-align: center;
+  transition: font-weight 1s, background-color 1s;
+}
+.profile-link:hover {
+  font-weight: 600;
+  background-color: rgb(90, 225, 223);
+}
+/* ----------- */
+.logo {
+  font-size: 2.4rem;
+  font-weight: bold;
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(90deg, #ff6a00, #ee0979, #00c6ff, #0072ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* navba.ejs */
+.nav-links-group a {
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-links-group a:hover {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+@media (min-width: 996px) {
+  .responsive-nav {
+    display: block;
+    justify-content: start;
+  }
+}
+
+.scale-btn {
+  transition: scale 0.3s ease-in-out;
+}
+
+.scale-btn:hover {
+  scale: 1.2;
+}
+
+::-webkit-scrollbar {
+  width: 16px;
+}
+
+::-webkit-scrollbar-button {
+  background-color: rgba(136, 136, 136, 0.578);
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

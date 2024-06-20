@@ -1,39 +1,86 @@
 <% layout("./layouts/boilerplate") -%>
 
-<div>
-  <form action="/posts/new" method="get" class="d-flex justify-content-end">
-    <button class="btn btn-danger m-3 px-5 py-2 " >Add Post</button>
-  </form>
-  <ul style="list-style-type: none;" class="mt-3">
-    <% for(post of posts) { %>
-  <li >
-    <div class="card col-6 offset-3 my-5" >
-      <div class="card-body">
-      <a href="/profile/<%= post.creator_id%>/view">
-        <i class="fa-solid fa-link"></i>
-        <img src="<%= users.filter(user=>{user.id === posts.creator_id}).profile_url %>" style="width: 40px; " class="rounded-circle me-3 border">
-      </a>
-        <h5 class="card-title d-inline"><%=post.title %></h5>
-        <p class="card-text"><%=post.content %></p>
-      
-      </div>
-      <div class="card-footer">
-        <form action="/posts/<%= post.id%>/view" method="get" class="d-inline">
-          <button class="btn btn-outline-dark">View</button>
-        </form>
-        <form action="/posts/<%= post.id%>" method="get" class="d-inline">
-          <button class="btn btn-outline-success">Update</button>
-        </form>
-        <form action="/posts/<%=post.id%>?_method=DELETE" method="post" class="d-inline">
-          <button class="btn btn-outline-danger">Delete</button>
-        </form>
-        <span><%=post.created_date %> |</span>
-        <span><%=post.created_at %></span>
-      </div>
-    </div>
-  </li>
-      <% }%>
-  </ul>
 
-</div>
+  <div>
+    <ul style="list-style-type: none;" class="mt-3 mx-auto" style="z-index: 6;">
+      <% for(let i=posts.length - 1; i>=0; i-- ) { %>
+        <li class=" col-10 col-lg-8 mx-auto post-card rounded-2" style="opacity: 1;">
+          <div class="card my-5" style="width: 100%; background-color: inherit;">
+            <div class="card-body post-body">
+              <a href="/profile/<%= posts[i].creator._id%>/view">
+                <img src="<%= posts[i].creator.profile_url %>" style="width: 36px; " class="rounded-circle me-3 border">
+              </a>
+              <h5 class="card-title d-inline">
+                <%=posts[i].title %>
+              </h5>
+              <p class="card-text">
+                <%=posts[i].content %>
+              </p>
 
+            </div>
+            <div class="card-footer d-flex">
+              <form action="/posts/<%= posts[i].id%>/view" method="get" class="d-inline">
+                <button class="btn btn-outline-dark ">View</button>
+              </form>
+
+              <!-- btn to like posts -->
+
+              <button type="button" class="border border-0 " style="background-color: transparent;"
+                onclick="handleLiked(`<%= posts[i].id %>`)">
+                <i class="fa-solid fa-heart like-icon <%=currUser !== undefined && posts[i].likes.includes(currUser.id) ? 'red': '' %>"
+                  style="font-size: 1.5rem;cursor: pointer;"></i>
+              </button>
+
+
+
+
+              <div class="time-status my-auto">
+                <span>
+                  <%=posts[i].created_date %> |
+                </span>
+                <span>
+                  <%=posts[i].created_at %>
+                </span>
+
+              </div>
+
+            </div>
+          </div>
+        </li>
+        <% }%>
+    </ul>
+
+  </div>
+
+
+
+  <script>
+
+    function handleLiked(id) {
+
+      axios.post(`/posts/likes/${id}`, {
+        headers: {
+          Accept: "application/json"
+        }
+      })
+        .then(res => {
+          let errRes = res.headers["content-type"];
+          if (errRes.includes("text/html")) {
+            return alert("you have to first authorise your account, do login or signup")
+          }
+          if (res.data.isliked) {
+            window.alert(res.data.msg);
+          } else {
+            confirm(res.data.msg);
+          }
+
+        })
+        .catch(err => {
+          console.log("WE encounter an error");
+          console.log(err);
+        })
+
+    }
+
+
+  </script>

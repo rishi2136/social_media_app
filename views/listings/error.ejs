@@ -1,5 +1,9 @@
 <% layout("./layouts/boilerplate") -%>
 
-<div class="alert alert-danger" role="alert">
-  <%= message%>
-</div>
+  <div class="alert alert-warning alert-dismissible fade show col-10 col-lg-6  mx-auto my-3" role="alert">
+    <strong>
+      <%= message %>
+
+    </strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>

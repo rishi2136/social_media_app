@@ -1,18 +1,19 @@
 <% layout("./layouts/boilerplate") -%>
 
-<div>
-  <div class="container mt-5">
-    <h2 class="text-center">User Login</h2>
-    <form method="post" action="/login">
-      <div class="mb-3">
-        <label for="username" class="form-label">Enter a Username: </label>
-        <input type="text" class="form-control" id="username" name="username" required>
-      </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">Enter your email: </label>
-        <input class="form-control" id="email" name="email" rows="5" required>
-      </div>
-      <button type="submit" class="btn btn-primary">LOGIN</button>
-    </form>
+  <div>
+    <div class="container mt-5 mx-auto col-8">
+      <h2 class="text-center">Login to your account</h2>
+      <form method="post" action="/login" class="needs-validation" novalidate autocomplete="on">
+        <div class="mb-3">
+          <label for="username" class="form-label">Enter a Username : </label>
+          <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Enter your password to get in : </label>
+          <input type="password" class="form-control" id="password" name="password" autocomplete="on" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Log In</button>
+      </form>
+    </div>
   </div>
-</div>

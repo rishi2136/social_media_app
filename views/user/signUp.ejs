@@ -1,0 +1,22 @@
+<% layout("./layouts/boilerplate") -%>
+
+  <div>
+    <div class="container mt-5  mx-auto col-8">
+      <h2 class="text-center">Sign Up with the new account </h2>
+      <form method="post" action="/signup">
+        <div class="mb-3">
+          <label for="email" class="form-label">Enter your email: </label>
+          <input class="form-control needs-validation" id="email" name="email" rows="5" required>
+        </div>
+        <div class="mb-3">
+          <label for="username" class="form-label">Enter a Username : </label>
+          <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Enter your Password: </label>
+          <input class="form-control needs-validation" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+      </form>
+    </div>
+  </div>

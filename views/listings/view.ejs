@@ -1,19 +1,38 @@
 <% layout("./layouts/boilerplate") -%>
 
-<div class="container">
-  <a href="/profile">
+  <div class="container">
+    <a href="/profile/<%= post.creator._id%>/view">
 
-    <img src="<%= user.profile_url%>" alt="post owner pic" class="mx-auto d-block rounded-circle my-3" style="width: 6rem;">
-  </a>
-<h2 class="text-center"><%= post.title%></h2>
+      <img src="<%= post.creator.profile_url%>" alt="post owner pic" class="mx-auto d-block rounded-circle my-3"
+        style="width: 6rem;">
+    </a>
+    <h2 class="text-center">
+      <%= post.title%>
+    </h2>
+    <p class="text-center">Created By : <%= post.creator.username%>
+    </p>
+    <hr>
+    <div class="card mx-auto mt-5 ">
+      <div class="card-body">
+        <div class="card-text text-center my-5 bg-body-tertiary rounded-1">
+          <%= post.content%>
+        </div>
+        <div class="card-text ">Last Modified : <%= post.created_date%>
+        </div>
+        <div class="card-text">At :<%= post.created_at%>
+        </div>
+        <div class="card-text fw-bolder">Likes: <%= post.likes.length%>
 
-<hr>
-<div class="card mx-auto mt-5 ">
-  <div class="card-body">
-    <div class="card-text text-center my-5 bg-body-tertiary rounded-1"><%= post.content%></div>
-    <div class="card-text ">Last Modified : <%= post.created_date%></div>
-    <div class="card-text">At :<%= post.created_at%></div>
-    <div class="card-footer">Post owner: <%= post.creator_id%></div>
+        </div>
+        <% if(currUser && post.creator._id.equals(currUser._id) ) { %>
+          <form action="/posts/<%= post._id%>" method="get" class="d-inline">
+            <button class="btn btn-outline-success">Edit</button>
+          </form>
+          <form action="/posts/<%= post._id%>?_method=DELETE" method="post" class="d-inline">
+            <button class="btn btn-outline-danger">Delete</button>
+          </form>
+          <% } %>
+      </div>
+    </div>
   </div>
-</div>
-</div>
+  </div>

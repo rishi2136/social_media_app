@@ -2,20 +2,53 @@ const express = require("express");
 const posts = require("../controllers/posts");
 const router = express.Router();
 const wrapAsync = require("../utility/wrapAsync");
+const { isLoggedIn, loginRedirect, isCreator } = require('../middleware/users');
+const { validatePost } = require("../middleware/posts");
 
-router.route("/posts").get(wrapAsync(posts.homeScreen));
+router.route("/").get(wrapAsync(posts.homeScreen));
+
+router.route("/trending")
+  .get(
+    wrapAsync(posts.trendingPost)
+  )
+
 
 router
-  .route("/posts/new")
-  .get(posts.renderAddForm)
-  .post(wrapAsync(posts.addPost));
+  .route("/new")
+  .get(
+    isLoggedIn,
+    posts.renderAddForm)
+  .post(
+    isLoggedIn,
+    validatePost,
+    wrapAsync(posts.addPost));
+
+
+router.route("/likes/:id")
+  .post(
+    isLoggedIn,
+    wrapAsync(posts.likedPost)
+  )
+
 
 router
-  .route("/posts/:id")
-  .get(wrapAsync(posts.renderEditForm))
-  .put(wrapAsync(posts.editPost))
-  .delete(wrapAsync(posts.deletePost));
+  .route("/:id")
+  .get(
+    isLoggedIn,
+    isCreator,
+    posts.renderEditForm)
+  .put(
+    isLoggedIn,
+    isCreator,
+    validatePost,
+    wrapAsync(posts.editPost))
+  .delete(
+    isLoggedIn,
+    isCreator,
+    wrapAsync(posts.deletePost));
 
-router.route("/posts/:id/view").get(wrapAsync(posts.viewIndividualPost));
+
+router.route("/:id/view").get(wrapAsync(posts.viewIndividualPost));
+
 
 module.exports = router;

@@ -1,29 +1,74 @@
-
-
-<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top" id="parent-nav">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/posts">Spread</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand logo" href="/posts">Spread</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="/posts">Home</a>
-        <a class="nav-link" href="#">Trending</a>
-        <a class="nav-link" href="#">Help</a>
+    <div class="collapse navbar-collapse responsive-nav" id="navbarNavAltMarkup">
+      <div class="navbar-nav nav-links-group">
+        <a class="nav-link " aria-current="page" href="/posts">Home</a>
+        <a class="nav-link" href="/posts/trending">Trending</a>
+        <a class="nav-link" href="/help">Help</a>
+        <a class="nav-link" style="cursor: pointer" data-bs-toggle="offcanvas" data-bs-target="#searchList"
+          aria-controls="offcanvasWithBothOptions">
+          <i class="fa-solid fa-magnifying-glass search-btn"></i> Find
+        </a>
       </div>
-      <div class="d-flex justify-content-evenly">
-        <form class="d-flex"  action="/profile">
-          <button class="btn btn-outline-success ms-3" type="submit" >SignUp</button>
-        </form>
-        <form class="d-flex"  action="/verify">
-          <button class="btn btn-outline-primary ms-3" type="submit">Login</button>
-        </form>
-        <form class="d-flex" action="/logout">
-          <button class="btn btn-outline-dark ms-3" type="submit">Logout</button>
-        </form>
+      <div class="d-flex button-group">
+        <% if(!currUser) { %>
+          <form class="d-flex" action="/signup" method="get">
+            <button class="btn btn-outline-success m-3 scale-btn" type="submit">
+              SignUp
+            </button>
+          </form>
+          <form class="d-flex" action="/login">
+            <button class="btn btn-outline-primary m-3 scale-btn" type="submit">
+              Login
+            </button>
+          </form>
+          <% } %>
+            <% if(currUser) { %>
+              <form class="d-flex" action="/logout">
+                <button class="btn btn-outline-dark m-3 scale-btn" type="submit">
+                  Logout
+                </button>
+              </form>
+              <% } %>
+
+                <form action="/posts/new" method="get">
+                  <button class="btn btn-outline-danger m-3 add-btn scale-btn">
+                    Add Post
+                  </button>
+                </form>
+
       </div>
-     
     </div>
   </div>
 </nav>
+
+<!-- offcanvas search tab -->
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="searchList"
+  aria-labelledby="offcanvasWithBothOptionsLabel">
+  <div class="offcanvas-header">
+    <h3 class="offcanvas-title" id="staticBackdropLabel">User Search</h3>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control input-box" placeholder="Search here" aria-label="username" name="username"
+        aria-describedby="button-addon2" />
+      <button class="btn btn-primary list-btn" type="button" id="button-addon2">
+        Search
+      </button>
+    </div>
+
+    <!-- list of search users appears here -->
+    <div class="container-fluid">
+      <div class="userlist" style="list-style-type: none"></div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/js/app.js"></script>
