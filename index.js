@@ -33,8 +33,8 @@ main()
   })
 
 async function main() {
-  // await mongoose.connect(process.env.MONGOATLAS_URL);
-  await mongoose.connect(process.env.MONGO_URL);
+  await mongoose.connect(process.env.MONGOATLAS_URL);
+
 }
 
 app.set('view engine', 'ejs');
