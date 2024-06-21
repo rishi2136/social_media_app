@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
+
 const Post = require("../models/posts");
-const User = require("../models/users");
+
 const ExpressError = require('../utility/ExpressError');
-const { postSchema } = require('../Schema');
+
 
 
 
