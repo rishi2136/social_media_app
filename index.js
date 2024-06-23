@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
-const session = require("express-session");
+// const session = require("express-session");
+const session = require("cookie-session");
 dotenv.config();
 const path = require("path");
 const ejsMate = require("ejs-mate");
@@ -12,6 +13,7 @@ const User = require("./models/users");
 const bodyParser = require('body-parser');
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+
 // const ejsLint = require('ejs-lint');
 const axios = require('axios');
 
@@ -31,7 +33,7 @@ main()
   })
 
 async function main() {
-  await mongoose.connect(process.env.MONGOATLAS_URL);
+  await mongoose.connect(process.env.MONGO_ATLAS_URL);
 
 }
 
@@ -81,6 +83,7 @@ app.use((req, res, next) => {
 // const authRouter = require("./routes/security");
 const postRouter = require("./routes/posts");
 const userRouter = require("./routes/users");
+const ExpressError = require("./utility/ExpressError");
 
 
 app.use("/posts", postRouter);
@@ -89,10 +92,10 @@ app.use('/', userRouter);
 
 
 // * work for all the routes that don't exist 
-// app.all("*", (req, res, next) => {
-//   let err = new ExpressError(404, "Page not found");
-//   next(err);
-// })
+app.all("*", (req, res, next) => {
+  let err = new ExpressError(404, "Page not found");
+  next(err);
+})
 
 //error handling middleware
 app.use((err, req, res, next) => {

@@ -8,7 +8,6 @@ const ExpressError = require('../utility/ExpressError');
 
 
 module.exports.homeScreen = async (req, res) => {
-  // console.log(req);
   let posts = await Post.find({}).populate('creator');
   res.render("./listings/home.ejs", { posts });
 }
