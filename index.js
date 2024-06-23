@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
-// const session = require("express-session");
-const session = require("cookie-session");
+const session = require("express-session");
+// const session = require("cookie-session");
 dotenv.config();
 const path = require("path");
 const ejsMate = require("ejs-mate");
