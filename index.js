@@ -92,10 +92,10 @@ app.use('/', userRouter);
 
 
 // * work for all the routes that don't exist 
-app.all("*", (req, res, next) => {
-  let err = new ExpressError(404, "Page not found");
-  next(err);
-})
+// app.all("*", (req, res, next) => {
+//   let err = new ExpressError(404, "Page not found");
+//   next(err);
+// })
 
 //error handling middleware
 app.use((err, req, res, next) => {
